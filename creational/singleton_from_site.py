@@ -18,6 +18,7 @@ class SingletonMeta(type):
         if cls not in cls._instances:
             instance = super().__call__(*args, **kwargs)
             cls._instances[cls] = instance
+        print(cls._instances)
         return cls._instances
 
 class Singleton(metaclass=SingletonMeta):
@@ -25,9 +26,18 @@ class Singleton(metaclass=SingletonMeta):
     def some_business_logic(self):
         pass
 
+
+class SingleTwo(metaclass=SingletonMeta):
+
+    def some_business_logic(self):
+        pass
+
+
 if __name__ == "__main__":
     s1 = Singleton()
     s2 = Singleton()
+    s3 = SingleTwo()
+
 
     if id(s1) == id(s2):
         print("Singlethon working")
@@ -69,6 +79,7 @@ class Singleton(metaclass=SingletonMeta):
 def test_singleton(value: str) -> None:
     singleton = Singleton(value)
     print(singleton.value)
+
 if __name__ == "__main__":
     # The client code.
 
